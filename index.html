@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Ayeyarwaddy Laptop Store</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second-Hand Laptop Store</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-            <h1>Tech Ayeyarwaddy</h1>
-            <p>အရည်အသွေးမြင့် ကွန်ပျူတာနှင့် Laptop များ</p>
-        </div>
-    </header>
+  <!-- Header Section -->
+  <header class="navbar">
+    <div class="logo">LaptopTech <span>2nd Hand</span></div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search Laptop (e.g. Dell, i5, 16GB)...">
+    </div>
+  </header>
 
-    <!-- Filter Section -->
-    <section class="filter-section">
-        <input type="text" id="search-input" placeholder="Laptop အမျိုးအစား ရှာဖွေရန်...">
-        <select id="brand-filter">
-            <option value="all">Brand အားလုံး</option>
-            <option value="Dell">Dell</option>
-            <option value="Lenovo">Lenovo</option>
-            <option value="HP">HP</option>
-            <option value="Apple">Apple</option>
-            <option value="Asus">Asus</option>
-            <option value="Acer">Acer</option>
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Laptop Detail Modal -->
+  <div id="laptopModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="modal-body" id="modalBody">
+        <!-- JavaScript ဖြင့် Detail များ ပြပေးမည် -->
+      </div>
+    </div>
+  </div>
+    <!-- Sidebar / Filters -->
+    <aside class="sidebar">
+      <h3>Filter Laptops</h3>
+      <div class="filter-group">
+        <label>Brand</label>
+        <select id="brandFilter">
+          <option value="all">Brands အားလုံး</option>
+          <option value="Dell">Dell</option>
+          <option value="Lenovo">Lenovo</option>
+          <option value="Apple">Apple</option>
         </select>
+      </div>
+    </aside>
+
+    <!-- Product Grid -->
+    <section class="products-section">
+      <h2>ရရှိနိုင်သော Laptop များ</h2>
+      <div class="product-grid" id="productGrid">
+        <!-- JavaScript ဖြင့် ရေးသားထားသော Laptop Cards များ ဒီနေရာမှာ ပေါ်လာမည် -->
+      </div>
     </section>
 
-    <!-- Laptop List Section -->
-    <main>
-        <div id="laptop-list" class="laptop-grid">
-            <!-- Laptop Data များကို JavaScript ဖြင့် ထည့်သွင်းမည် -->
-        </div>
-    </main>
+  </main>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2026 Tech Ayeyarwaddy Laptop Store. All rights reserved.</p>
-        <p>ဆက်သွယ်ရန် ဖုန်း - 09-890591822</p>
-    </footer>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
