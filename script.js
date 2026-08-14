@@ -30,13 +30,14 @@ let laptops = [
     image: "images/photo_2026-08-05_21-33-32.jpg",
     description: "Evo vPro ဖြစ်လို့ battery ရှယ်ခံသည်"
   }
+ 
 ];
 
 const productGrid = document.getElementById('productGrid');
 const searchInput = document.getElementById('searchInput');
 const brandFilter = document.getElementById('brandFilter');
 
-// 1. Laptop Cards များ ထုတ်ပြခြင်း
+// 1. Laptop Cards များ ထုတ်ပြခြင်း (Viber & Telegram Buttons)
 function displayLaptops(items) {
   if (!productGrid) return;
   productGrid.innerHTML = items.map(laptop => `
@@ -47,9 +48,19 @@ function displayLaptops(items) {
         <h3>${laptop.title}</h3>
         <p>${laptop.specs}</p>
         <div class="price">${laptop.price} MMK</div>
-        <button class="btn-buy" style="background-color: #7360f2;" onclick="event.stopPropagation(); orderViaViber('${laptop.title}', '${laptop.price}')">
-          Viber ဖြင့် ဝယ်ယူရန်
-        </button>
+        
+        <!-- Action Buttons (Viber & Telegram) -->
+        <div style="display: flex; gap: 8px; margin-top: auto;">
+          <button class="btn-buy" style="background-color: #7360f2; flex: 1; padding: 0.5rem;" 
+                  onclick="event.stopPropagation(); orderViaViber('${laptop.title}', '${laptop.price}')">
+            Viber
+          </button>
+          <button class="btn-buy" style="background-color: #0088cc; flex: 1; padding: 0.5rem;" 
+                  onclick="event.stopPropagation(); orderViaTelegram('${laptop.title}', '${laptop.price}')">
+            Telegram
+          </button>
+        </div>
+
       </div>
     </div>
   `).join('');
@@ -70,19 +81,31 @@ function filterData() {
   displayLaptops(filtered);
 }
 
-// 3. Direct Order (Viber Link) - ၁၀၀% အလုပ်လုပ်သော Link စနစ်
+// 3. Direct Order - Viber
 function orderViaViber(title, price) {
-  const viberNumber = "959980882669"; // 959... format ဖြင့် တိုက်ရိုက် ရေးသားထားသည်
+  const viberNumber = "09980882669"; 
   const message = `မင်္ဂလာပါ၊ Website မှတစ်ဆင့် "${title}" (${price} MMK) ကို ဝယ်ယူရန် မေးမြန်းချင်လို့ပါခင်ဗျာ။`;
 
-  // ဖုန်းတွင် Viber အလွယ်တကူ ပွင့်စေသည့် Universal Link
-  const viberUrl = `https://viber.click/${viberNumber}?text=${encodeURIComponent(message)}`;
+  // စာသားကို Auto Copy ကူးပေးခြင်း
+  navigator.clipboard.writeText(message);
+  alert("ဝယ်ယူမည့် စာသားကို Copy ကူးလိုက်ပါပြီ။ Viber ပွင့်လာပါက Paste (Ctrl + V) လုပ်၍ ပို့ပေးပါခင်ဗျာ။");
 
-  // Web Browser/Phone တွင် ပွင့်စေခြင်း
-  window.open(viberUrl, '_blank');
+  const formattedNumber = "95" + viberNumber.substring(1);
+  const viberUrl = `viber://chat?number=%2B${formattedNumber}`;
+
+  window.location.href = viberUrl;
 }
 
-// 4. Detail Modal Pop-up စနစ်
+// 4. Direct Order - Telegram
+function orderViaTelegram(title, price) {
+  const telegramUsername = "your_telegram_username"; // <-- မိမိ Telegram Username ထည့်ပါ (ဥပမာ- ayeyarwaddy_tech)
+  const message = `မင်္ဂလာပါ၊ Website မှတစ်ဆင့် "${title}" (${price} MMK) ကို ဝယ်ယူရန် မေးမြန်းချင်လို့ပါခင်ဗျာ။`;
+
+  const telegramUrl = `https://t.me/${telegramUsername}?text=${encodeURIComponent(message)}`;
+  window.open(telegramUrl, '_blank');
+}
+
+// 5. Detail Modal Pop-up စနစ်
 function openModal(id) {
   const laptop = laptops.find(item => item.id === id);
   if (!laptop) return;
@@ -100,11 +123,19 @@ function openModal(id) {
         <li><strong>အသေးစိတ် အချက်အလက်:</strong> ${laptop.description}</li>
         <li><strong>ဆိုင်လိပ်စာ:</strong> ရန်ကုန်မြို့။</li>
       </ul>
-      <div style="margin-top: 1rem;">
-        <button class="btn-buy" style="background-color: #7360f2;" onclick="orderViaViber('${laptop.title}', '${laptop.price}')">
-          Viber ဖြင့် တိုက်ရိုက် ဆက်သွယ်ရန်
+      
+      <!-- Modal Action Buttons -->
+      <div style="display: flex; gap: 10px; margin-top: 1.2rem;">
+        <button class="btn-buy" style="background-color: #7360f2; flex: 1;" 
+                onclick="orderViaViber('${laptop.title}', '${laptop.price}')">
+          Viber ဖြင့် ဆက်သွယ်ရန်
+        </button>
+        <button class="btn-buy" style="background-color: #0088cc; flex: 1;" 
+                onclick="orderViaTelegram('${laptop.title}', '${laptop.price}')">
+          Telegram ဖြင့် ဆက်သွယ်ရန်
         </button>
       </div>
+
     </div>
   `;
 
