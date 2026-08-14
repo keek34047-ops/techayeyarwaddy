@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Ayeyarwaddy Laptop Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="navbar">
+    <div class="logo">Tech Ayeyarwaddy <span>Grade A+ Good Second</span></div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search Laptop (e.g. Dell, i5, 16GB)...">
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Admin Section (Add New Laptop) -->
+  <section class="admin-section">
+    <h2>Laptop အသစ်ထည့်သွင်းရန် (Admin Only)</h2>
+    <form id="addLaptopForm" class="admin-form">
+      <input type="text" id="laptopTitle" placeholder="Laptop အမည် (eg. Dell Latitude 5490)" required>
+      <input type="text" id="laptopBrand" placeholder="Brand (Dell, Lenovo, Apple...)" required>
+      <input type="text" id="laptopSpecs" placeholder="Specs (eg. Core i5 / 8GB RAM / 256GB SSD)" required>
+      <input type="text" id="laptopCondition" placeholder="အခြေအနေ (eg. 90% GoodSecond)" required>
+      <input type="text" id="laptopPrice" placeholder="စျေးနှုန်း (eg. 899,000)" required>
+<input type="file" id="laptopImageFile" accept="image/*" required>
+      <textarea id="laptopDesc" placeholder="အသေးစိတ် အချက်အလက်များ" rows="3" required></textarea>
+      <button type="submit" class="btn-add">Laptop အသစ်ထည့်မည်</button>
+    </form>
+  </section>
+    <!-- Sidebar / Filters -->
+    <aside class="sidebar">
+      <h3>Filter Laptops</h3>
+      <div class="filter-group">
+        <label>Brand</label>
+        <select id="brandFilter">
+          <option value="all">Brands အားလုံး</option>
+          <option value="Dell">Dell</option>
+          <option value="Lenovo">Lenovo</option>
+          <option value="Apple">Apple</option>
+        </select>
+      </div>
+    </aside>
+
+    <!-- Product Grid -->
+    <section class="products-section">
+      <h2>ရရှိနိုင်သော Laptop များ</h2>
+      <div class="product-grid" id="productGrid">
+        <!-- JavaScript ဖြင့် ရေးသားထားသော Laptop Cards များ ဒီနေရာမှာ ပေါ်လာမည် -->
+      </div>
+    </section>
+
+  </main>
+<!-- Laptop Detail Modal -->
+  <div id="laptopModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="modal-body" id="modalBody">
+        <!-- JavaScript ဖြင့် Detail များ ပြပေးမည် -->
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>   
